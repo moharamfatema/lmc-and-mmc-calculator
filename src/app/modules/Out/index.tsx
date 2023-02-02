@@ -7,10 +7,10 @@ const Out: FC<{
     const { state }: any = React.useContext(StateContext)
     const { size, utol, ltol, hole, max, real, sym } = state
     const calcMMC: () => number = () => {
-        return hole ? size + ltol : size + utol
+        return hole ? Math.abs(size + ltol) : Math.abs(size + utol)
     }
     const calcLMC: () => number = () => {
-        return hole ? size + utol : size + ltol
+        return hole ? Math.abs(size + utol) : Math.abs(size + ltol)
     }
 
     const [intervalues, setIntervalues] = useState({
@@ -35,8 +35,11 @@ const Out: FC<{
         let res = max
             ? Math.abs(diffvalues.mdiff + sym)
             : Math.abs(diffvalues.ldiff + sym)
-        res = Math.max(res, sym)
-        res = Math.min(res, sym + wtol)
+        if (res < sym) {
+            res = sym
+        } else if (res > sym + wtol) {
+            res = sym + wtol
+        }
         return parseFloat(res.toPrecision(4))
     }
 
@@ -44,17 +47,30 @@ const Out: FC<{
 
     useEffect(() => {
         return () => {
+            console.debug('diffvalues', intervalues, real, calcLdiff())
             setDiffvalues({
                 mdiff: calcMdiff(),
                 ldiff: calcLdiff(),
             })
+        }
+    }, [intervalues, real, wtol, state])
+
+    useEffect(() => {
+        return () => {
+            console.debug('intervalues', state)
             setIntervalues({
                 mmc: calcMMC(),
                 lmc: calcLMC(),
             })
+        }
+    }, [state, wtol])
+
+    useEffect(() => {
+        return () => {
+            console.debug('dev', diffvalues, wtol, state)
             setDeviation(calcDeviation())
         }
-    }, [hole, max, size, utol, ltol, wtol, real, sym])
+    }, [diffvalues, wtol, state])
 
     return (
         <div className='out grid grid-cols-1 gap-2 section'>

@@ -30,7 +30,7 @@ const Main: FC = () => {
 		useState(initialState)
     const [wtol, setWtol] = useState(0.2)
     return (
-        <div className='main flex w-full h-[100vh] justify-center items-center p-20'>
+        <div className='main flex w-full h-[100vh] justify-center items-center p-20 my-5'>
             <div className='wrapper grid grid-cols-1 lg:grid-cols-3 gap-5 '>
                 <StateContext.Provider value={{ state, setState }}>
                     <Tolerance wtol={wtol} setWtol={setWtol} />

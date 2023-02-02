@@ -14,23 +14,26 @@ const Tolerance: FC<{
     }
 
     const handleToleranceWidthChange = () => {
-        setWtol(utol - ltol)
+        setWtol(parseFloat((utol - ltol).toPrecision(4)))
     }
 
     const handleUtoleranceChange = (e: ChangeEvent<HTMLInputElement>) => {
         setState({ ...state, utol: Number(e.target.value) })
-        handleToleranceWidthChange()
     }
 
     const handleLtoleranceChange = (e: ChangeEvent<HTMLInputElement>) => {
         setState({ ...state, ltol: Number(e.target.value) })
-        handleToleranceWidthChange()
     }
+
+    useEffect(() => {
+        handleToleranceWidthChange()
+    }, [utol, ltol])
 
     return (
         <div className='tolerance grid grid-cols-2 gap-2 section '>
             <label htmlFor='size'>Size Dimension</label>
             <input
+                step='0.1'
                 type='number'
                 id='size'
                 name='size'
@@ -39,6 +42,7 @@ const Tolerance: FC<{
             />
             <label htmlFor='utolerance'>Upper Tolerance</label>
             <input
+                step='0.1'
                 type='number'
                 id='utolerance'
                 name='utolerance'
@@ -47,6 +51,7 @@ const Tolerance: FC<{
             />
             <label htmlFor='ltolerance'>Lower Tolerance</label>
             <input
+                step='0.1'
                 type='number'
                 id='ltolerance'
                 name='ltolerance'
