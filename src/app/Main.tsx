@@ -31,53 +31,55 @@ const Main: FC = () => {
     })
 
     return (
-        <div className='main flex w-full h-[100vh] justify-center items-center'>
-            <Tolerance
-                size={invalues.size}
-                utol={invalues.utol}
-                ltol={invalues.ltol}
-                wtol={invalues.wtol}
-                setSize={(size: number) => {
-                    setInvalues({ ...invalues, size })
-                }}
-                setUtol={(utol: number) => {
-                    setInvalues({ ...invalues, utol })
-                }}
-                setLtol={(ltol: number) => {
-                    setInvalues({ ...invalues, ltol })
-                }}
-                setWtol={(wtol: number) => {
-                    setInvalues({ ...invalues, wtol })
-                }}
-            />
-            <Mid
-                sym={invalues.sym}
-                real={invalues.real}
-                hole={menuvalues.hole}
-                max={menuvalues.max}
-                setSym={(sym: number) => {
-                    setInvalues({ ...invalues, sym })
-                }}
-                setReal={(real: number) => {
-                    setInvalues({ ...invalues, real })
-                }}
-                setHole={(hole: boolean) => {
-                    setMenuvalues({ ...menuvalues, hole })
-                }}
-                setMax={(max: boolean) => {
-                    setMenuvalues({ ...menuvalues, max })
-                }}
-            />
-            <Out
-                hole={menuvalues.hole}
-                max={menuvalues.max}
-                size={invalues.size}
-                utol={invalues.utol}
-                ltol={invalues.ltol}
-                wtol={invalues.wtol}
-                real={invalues.real}
-                sym={invalues.sym}
-            />
+        <div className='main flex w-full h-[100vh] justify-center items-center p-20'>
+            <div className='wrapper grid grid-cols-1 lg:grid-cols-3 gap-5 '>
+                <Tolerance
+                    size={invalues.size}
+                    utol={invalues.utol}
+                    ltol={invalues.ltol}
+                    wtol={invalues.wtol}
+                    setSize={(size: number) => {
+                        setInvalues({ ...invalues, size })
+                    }}
+                    setUtol={(utol: number) => {
+                        setInvalues({ ...invalues, utol })
+                    }}
+                    setLtol={(ltol: number) => {
+                        setInvalues({ ...invalues, ltol })
+                    }}
+                    setWtol={(wtol: number) => {
+                        setInvalues({ ...invalues, wtol })
+                    }}
+                />
+                <Mid
+                    sym={invalues.sym}
+                    real={invalues.real}
+                    hole={menuvalues.hole}
+                    max={menuvalues.max}
+                    setSym={(sym: number) => {
+                        setInvalues({ ...invalues, sym })
+                    }}
+                    setReal={(real: number) => {
+                        setInvalues({ ...invalues, real })
+                    }}
+                    setHole={(hole: boolean) => {
+                        setMenuvalues({ ...menuvalues, hole })
+                    }}
+                    setMax={(max: boolean) => {
+                        setMenuvalues({ ...menuvalues, max })
+                    }}
+                />
+                <Out
+                    hole={menuvalues.hole}
+                    max={menuvalues.max}
+                    size={invalues.size}
+                    utol={invalues.utol}
+                    ltol={invalues.ltol}
+                    wtol={invalues.wtol}
+                    real={invalues.real}
+                    sym={invalues.sym}
+                />
+            </div>
         </div>
     )
 }

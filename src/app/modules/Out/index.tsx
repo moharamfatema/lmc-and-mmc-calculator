@@ -63,30 +63,30 @@ const Out: FC<IOut> = ({ hole, max, size, utol, ltol, wtol, real, sym }) => {
     }, [hole, max, size, utol, ltol, wtol, real, sym])
 
     return (
-        <div className='out'>
-            <div className='mc'>
-                <div className='mmc'>
+        <div className='out grid grid-cols-1 gap-2 section'>
+            <div className='mc grid grid-rows-2 gap-2'>
+                <div className='mmc grid grid-cols-2 gap-2'>
                     <div className='label'>MMC</div>
                     <div className='value'>{intervalues.mmc}</div>
                 </div>
-                <div className='lmc'>
+                <div className='lmc grid grid-cols-2 gap-2'>
                     <div className='label'>LMC</div>
                     <div className='value'>{intervalues.lmc}</div>
                 </div>
             </div>
-            <div className='diff'>
-                <div className='mdiff'>
+            <div className='diff grid grid-rows-2 gap-2'>
+                <div className='mdiff grid grid-cols-2 gap-2'>
                     <div className='label'>difference to MMC</div>
                     <div className='value'>{diffvalues.mdiff}</div>
                 </div>
-                <div className='ldiff'>
+                <div className='ldiff grid grid-cols-2 gap-2'>
                     <div className='label'>difference to LMC</div>
                     <div className='value'>{diffvalues.ldiff}</div>
                 </div>
             </div>
-            <div className='deviation'>
+            <div className='deviation grid grid-cols-2 gap-2'>
                 <div className='label'>Allowed Deviation</div>
-                <div className='value'>{deviation}</div>
+                <div className='value final'>{deviation}</div>
             </div>
         </div>
     )

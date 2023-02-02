@@ -12,6 +12,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  @apply text-left ;
 }
 
 code {
@@ -20,12 +21,24 @@ code {
 }
 
 input{
-  @apply border border-gray-300 rounded-lg p-2;
+  @apply border border-gray-300 rounded-lg p-2 text-center;
 }
 select{
   @apply border border-gray-300 rounded-lg p-2;
 }
 
-label{
-  @apply text-gray-700;
+label , .label{
+  @apply text-gray-700 text-left align-middle;
+}
+
+.value{
+  @apply text-orange-600 font-bold border border-gray-300 rounded-lg p-2;
+}
+
+.value.final{
+  @apply text-green-600 font-bold;
+}
+
+.section{
+  @apply border border-gray-400 rounded-lg p-4;
 }

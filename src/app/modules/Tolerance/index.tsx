@@ -40,7 +40,7 @@ const Tolerance: FC<ITolerance> = ({
     }
 
     return (
-        <div className='tolerance grid grid-cols-2 gap-2'>
+        <div className='tolerance grid grid-cols-2 gap-2 section '>
             <label htmlFor='size'>Size Dimension</label>
             <input
                 type='number'
@@ -65,8 +65,8 @@ const Tolerance: FC<ITolerance> = ({
                 value={ltol}
                 onChange={handleLtoleranceChange}
             />
-            <p>Tolerance Width</p>
-            <p>{wtol}</p>
+            <p className='label'>Tolerance Width</p>
+            <p className='value'>{wtol}</p>
         </div>
     )
 }

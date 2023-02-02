@@ -20,8 +20,8 @@ const Mid: FC<IMid> = ({
     setMax,
 }) => {
     return (
-        <div className='mid'>
-            <div className='hole'>
+        <div className='mid grid gap-2 border section'>
+            <div className='hole grid grid-cols-2 gap-2'>
                 <label htmlFor='hole'>
 					Select Hole or shaft (outer or inner feature)
                 </label>
@@ -35,31 +35,35 @@ const Mid: FC<IMid> = ({
                     <option value={'false'}>Shaft</option>
                 </select>
             </div>
-            <div className='sym'>
-                <label htmlFor='sym'>Symbol</label>
-                <input
-                    type='number'
-                    name='sym'
-                    id='sym'
-                    value={sym}
-                    onChange={e =>
-                        setSym(Math.max(0, parseFloat(e.target.value)))
-                    }
-                />
+            <div className='wrap grid grid-cols-2 gap-2'>
+                <div className='sym grid grid-cols-2 gap-2'>
+                    <label htmlFor='sym'>Symbol</label>
+                    <input
+                        type='number'
+                        name='sym'
+                        id='sym'
+                        value={sym}
+                        onChange={e =>
+                            setSym(Math.max(0, parseFloat(e.target.value)))
+                        }
+                    />
+                </div>
+                <div className='max grid grid-cols-2 gap-2'>
+                    <select
+                        name='max'
+                        id='max'
+                        value={max ? 'true' : 'false'}
+                        onChange={e => setMax(e.target.value === 'true')}
+                    >
+                        <option value={'true'}>M</option>
+                        <option value={'false'}>L</option>
+                    </select>
+                    <label htmlFor='sym' className='text-right'>
+						Datum
+                    </label>
+                </div>
             </div>
-            <div className='max'>
-                <select
-                    name='max'
-                    id='max'
-                    value={max ? 'true' : 'false'}
-                    onChange={e => setMax(e.target.value === 'true')}
-                >
-                    <option value={'true'}>M</option>
-                    <option value={'false'}>L</option>
-                </select>
-                <label htmlFor='sym'>Datum</label>
-            </div>
-            <div className='real'>
+            <div className='real grid grid-cols-2 gap-2'>
                 <label htmlFor='real'>
 					Measured (real) Value of Size Dimension
                 </label>
