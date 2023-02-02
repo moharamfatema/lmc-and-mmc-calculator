@@ -1,28 +1,16 @@
-import React, { FC, ChangeEvent } from 'react'
+import React, { FC, ChangeEvent, useContext, useEffect } from 'react'
+import { StateContext } from '../../Main'
 
-interface ITolerance {
-	size: number
-	utol: number
-	ltol: number
+const Tolerance: FC<{
 	wtol: number
-	setSize: (size: number) => void
-	setUtol: (utol: number) => void
-	setLtol: (ltol: number) => void
 	setWtol: (wtol: number) => void
-}
+}> = ({ wtol, setWtol }) => {
+    const { state, setState }: any = useContext(StateContext)
 
-const Tolerance: FC<ITolerance> = ({
-    size,
-    utol,
-    ltol,
-    wtol,
-    setSize,
-    setUtol,
-    setLtol,
-    setWtol,
-}) => {
+    const { size, utol, ltol } = state
+
     const handleSizeChange = (e: ChangeEvent<HTMLInputElement>) => {
-        setSize(Number(e.target.value))
+        setState({ ...state, size: Number(e.target.value) })
     }
 
     const handleToleranceWidthChange = () => {
@@ -30,12 +18,12 @@ const Tolerance: FC<ITolerance> = ({
     }
 
     const handleUtoleranceChange = (e: ChangeEvent<HTMLInputElement>) => {
-        setUtol(Number(e.target.value))
+        setState({ ...state, utol: Number(e.target.value) })
         handleToleranceWidthChange()
     }
 
     const handleLtoleranceChange = (e: ChangeEvent<HTMLInputElement>) => {
-        setLtol(Number(e.target.value))
+        setState({ ...state, ltol: Number(e.target.value) })
         handleToleranceWidthChange()
     }
 

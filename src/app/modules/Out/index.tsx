@@ -1,17 +1,11 @@
 import React, { FC, useState, useEffect } from 'react'
+import { StateContext } from '../../Main'
 
-interface IOut {
-	hole: boolean
-	max: boolean
-	size: number
-	utol: number
-	ltol: number
+const Out: FC<{
 	wtol: number
-	real: number
-	sym: number
-}
-
-const Out: FC<IOut> = ({ hole, max, size, utol, ltol, wtol, real, sym }) => {
+}> = ({ wtol }) => {
+    const { state }: any = React.useContext(StateContext)
+    const { size, utol, ltol, hole, max, real, sym } = state
     const calcMMC: () => number = () => {
         return hole ? size + ltol : size + utol
     }
@@ -25,11 +19,11 @@ const Out: FC<IOut> = ({ hole, max, size, utol, ltol, wtol, real, sym }) => {
     })
 
     const calcMdiff: () => number = () => {
-        return Math.abs(real - intervalues.mmc)
+        return parseFloat(Math.abs(real - intervalues.mmc).toPrecision(4))
     }
 
     const calcLdiff: () => number = () => {
-        return Math.abs(real - intervalues.lmc)
+        return parseFloat(Math.abs(real - intervalues.lmc).toPrecision(4))
     }
 
     const [diffvalues, setDiffvalues] = useState({
@@ -43,7 +37,7 @@ const Out: FC<IOut> = ({ hole, max, size, utol, ltol, wtol, real, sym }) => {
             : Math.abs(diffvalues.ldiff + sym)
         res = Math.max(res, sym)
         res = Math.min(res, sym + wtol)
-        return res
+        return parseFloat(res.toPrecision(4))
     }
 
     const [deviation, setDeviation] = useState(calcDeviation())

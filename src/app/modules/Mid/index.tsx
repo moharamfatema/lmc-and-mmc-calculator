@@ -1,24 +1,9 @@
-import React, { FC } from 'react'
-interface IMid {
-	sym: number
-	real: number
-	hole: boolean
-	max: boolean
-	setSym: (sym: number) => void
-	setReal: (real: number) => void
-	setHole: (hole: boolean) => void
-	setMax: (max: boolean) => void
-}
-const Mid: FC<IMid> = ({
-    sym,
-    real,
-    hole,
-    max,
-    setSym,
-    setReal,
-    setHole,
-    setMax,
-}) => {
+import React, { FC, useContext } from 'react'
+import { StateContext } from '../../Main'
+
+const Mid: FC = () => {
+    const { state, setState }: any = useContext(StateContext)
+    const { hole, sym, max, real } = state
     return (
         <div className='mid grid gap-2 border section'>
             <div className='hole grid grid-cols-2 gap-2'>
@@ -29,7 +14,9 @@ const Mid: FC<IMid> = ({
                     name='hole'
                     id='hole'
                     value={hole ? 'true' : 'false'}
-                    onChange={e => setHole(e.target.value === 'true')}
+                    onChange={e =>
+                        setState({ ...state, hole: e.target.value === 'true' })
+                    }
                 >
                     <option value={'true'}>Hole</option>
                     <option value={'false'}>Shaft</option>
@@ -44,7 +31,10 @@ const Mid: FC<IMid> = ({
                         id='sym'
                         value={sym}
                         onChange={e =>
-                            setSym(Math.max(0, parseFloat(e.target.value)))
+                            setState({
+                                ...state,
+                                sym: Math.max(0, parseFloat(e.target.value)),
+                            })
                         }
                     />
                 </div>
@@ -53,7 +43,12 @@ const Mid: FC<IMid> = ({
                         name='max'
                         id='max'
                         value={max ? 'true' : 'false'}
-                        onChange={e => setMax(e.target.value === 'true')}
+                        onChange={e =>
+                            setState({
+                                ...state,
+                                max: e.target.value === 'true',
+                            })
+                        }
                     >
                         <option value={'true'}>M</option>
                         <option value={'false'}>L</option>
@@ -72,7 +67,9 @@ const Mid: FC<IMid> = ({
                     name='real'
                     id='real'
                     value={real}
-                    onChange={e => setReal(parseFloat(e.target.value))}
+                    onChange={e =>
+                        setState({ ...state, real: parseFloat(e.target.value) })
+                    }
                 />
             </div>
         </div>
