@@ -23,6 +23,15 @@ function App() {
                 </a>
             </nav>
             <Main />
+            <footer className='footer bg-gray-100 flex p-5 font-black shadow-sm  text-black'>
+                <a
+                    href='https://www.excedify.com'
+                    target='blank'
+                    className='m-auto'
+                >
+					Home
+                </a>
+            </footer>
         </div>
     )
 }
