@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/pages/lmc-and-mmc-calculator/static/css/main.de82f1b1.css",
-    "main.js": "/pages/lmc-and-mmc-calculator/static/js/main.4f11cbeb.js",
-    "static/js/787.67917293.chunk.js": "/pages/lmc-and-mmc-calculator/static/js/787.67917293.chunk.js",
-    "index.html": "/pages/lmc-and-mmc-calculator/index.html",
-    "main.de82f1b1.css.map": "/pages/lmc-and-mmc-calculator/static/css/main.de82f1b1.css.map",
-    "main.4f11cbeb.js.map": "/pages/lmc-and-mmc-calculator/static/js/main.4f11cbeb.js.map",
-    "787.67917293.chunk.js.map": "/pages/lmc-and-mmc-calculator/static/js/787.67917293.chunk.js.map"
+    "main.css": "/lmc-and-mmc-calculator/static/css/main.de82f1b1.css",
+    "main.js": "/lmc-and-mmc-calculator/static/js/main.204d83f8.js",
+    "static/js/787.67917293.chunk.js": "/lmc-and-mmc-calculator/static/js/787.67917293.chunk.js",
+    "index.html": "/lmc-and-mmc-calculator/index.html",
+    "main.de82f1b1.css.map": "/lmc-and-mmc-calculator/static/css/main.de82f1b1.css.map",
+    "main.204d83f8.js.map": "/lmc-and-mmc-calculator/static/js/main.204d83f8.js.map",
+    "787.67917293.chunk.js.map": "/lmc-and-mmc-calculator/static/js/787.67917293.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.de82f1b1.css",
-    "static/js/main.4f11cbeb.js"
+    "static/js/main.204d83f8.js"
   ]
 }
