@@ -4,8 +4,9 @@ import Datum from './components/Datum'
 
 const Wrap: FC = () => {
     return (
-        <div className='wrap grid grid-cols-2 gap-2 border border-black p-2'>
+        <div className='wrap flex justify-between gap-2 border-4 border-black px-2 font-bold text-black'>
             <Sym />
+            <div className='w-0'></div>
             <Datum />
         </div>
     )

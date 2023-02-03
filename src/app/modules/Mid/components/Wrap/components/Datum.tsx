@@ -11,13 +11,13 @@ const Datum: FC = () => {
 		setState: React.Dispatch<React.SetStateAction<IState>>
 	} = React.useContext(StateContext)
     return (
-        <div className='max grid grid-cols-2 gap-2'>
+        <div className='max flex gap-2 justify-center align-middle content-center'>
             <select
                 title='max-least'
                 name='max'
                 id='max'
                 value={state.max ? 'true' : 'false'}
-                className='border-l border-black p-2 rounded-full w-min h-auto m-auto'
+                className='my-2 border  border-black py-5 px-3 rounded-full w-fit h-auto'
                 onChange={e =>
                     setState({
                         ...state,
@@ -28,12 +28,8 @@ const Datum: FC = () => {
                 <option value={'true'}>M</option>
                 <option value={'false'}>L</option>
             </select>
-            <label
-                htmlFor='sym'
-                className='text-right border-l border-black p-2'
-            >
-				Datum
-            </label>
+            <div className='w-0 border-l-4 border-black'></div>
+            <div className='align-middle text-center m-auto w-min'>Datum</div>
         </div>
     )
 }

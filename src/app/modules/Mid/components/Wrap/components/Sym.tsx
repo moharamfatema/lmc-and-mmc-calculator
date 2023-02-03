@@ -11,15 +11,17 @@ const Sym: FC = () => {
 		setState: React.Dispatch<React.SetStateAction<IState>>
 	} = React.useContext(StateContext)
     return (
-        <div className='sym grid grid-cols-2 gap-2'>
-            <label htmlFor='sym' className='border-r border-black p-2'>
+        <div className='sym flex gap-2 px-2'>
+            <div className='p-1 align-middle text-center w-full h-auto m-auto'>
 				Symbol
-            </label>
+            </div>
+            <div className='border-r-4 border-black'></div>
             <input
                 step='0.1'
                 type='number'
                 name='sym'
                 id='sym'
+                className='m-2 w-full'
                 value={state.sym}
                 onChange={e =>
                     setState({
