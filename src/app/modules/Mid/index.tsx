@@ -3,8 +3,9 @@ import { StateContext } from '../../Main'
 import ex from '../../../assets/ex.jpeg'
 
 const Mid: FC = () => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const { state, setState }: any = useContext(StateContext)
-    const { hole, sym, max, real } = state
+
     return (
         <div className='mid grid gap-2 border section'>
             <div className='hole grid grid-cols-2 gap-2'>
@@ -15,7 +16,7 @@ const Mid: FC = () => {
                     title='hole-shaft'
                     name='hole'
                     id='hole'
-                    value={hole ? 'true' : 'false'}
+                    value={state.hole ? 'true' : 'false'}
                     onChange={e =>
                         setState({ ...state, hole: e.target.value === 'true' })
                     }
@@ -38,7 +39,7 @@ const Mid: FC = () => {
                         type='number'
                         name='sym'
                         id='sym'
-                        value={sym}
+                        value={state.sym}
                         onChange={e =>
                             setState({
                                 ...state,
@@ -52,7 +53,7 @@ const Mid: FC = () => {
                         title='max-least'
                         name='max'
                         id='max'
-                        value={max ? 'true' : 'false'}
+                        value={state.max ? 'true' : 'false'}
                         className='border-l border-black p-2 rounded-full w-min h-auto m-auto'
                         onChange={e =>
                             setState({
@@ -81,7 +82,7 @@ const Mid: FC = () => {
                     type='number'
                     name='real'
                     id='real'
-                    value={real}
+                    value={state.real}
                     onChange={e =>
                         setState({ ...state, real: parseFloat(e.target.value) })
                     }

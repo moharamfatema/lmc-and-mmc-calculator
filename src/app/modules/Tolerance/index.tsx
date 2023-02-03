@@ -1,20 +1,17 @@
 import React, { FC, ChangeEvent, useContext, useEffect } from 'react'
 import { StateContext } from '../../Main'
 
-const Tolerance: FC<{
-	wtol: number
-	setWtol: (wtol: number) => void
-}> = ({ wtol, setWtol }) => {
+const Tolerance: FC = () => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const { state, setState }: any = useContext(StateContext)
-
-    const { size, utol, ltol } = state
+    const { size, utol, ltol, wtol } = state
 
     const handleSizeChange = (e: ChangeEvent<HTMLInputElement>) => {
         setState({ ...state, size: Number(e.target.value) })
     }
 
     const handleToleranceWidthChange = () => {
-        setWtol(parseFloat((utol - ltol).toPrecision(4)))
+        setState({ ...state, wtol: parseFloat((utol - ltol).toPrecision(4)) })
     }
 
     const handleUtoleranceChange = (e: ChangeEvent<HTMLInputElement>) => {

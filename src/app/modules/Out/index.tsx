@@ -1,102 +1,107 @@
 import React, { FC, useState, useEffect } from 'react'
-import { StateContext } from '../../Main'
+import { IState, StateContext } from '../../Main'
 
-const Out: FC<{
-	wtol: number
-}> = ({ wtol }) => {
+interface IOut {
+	mc: IMC
+	diff: IDiff
+	deviation: number
+}
+interface IMC {
+	mmc: number
+	lmc: number
+}
+
+interface IDiff {
+	mdiff: number
+	ldiff: number
+}
+
+const Out: FC = () => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const { state }: any = React.useContext(StateContext)
-    const { size, utol, ltol, hole, max, real, sym } = state
-    const calcMMC: () => number = () => {
-        return hole ? Math.abs(size + ltol) : Math.abs(size + utol)
-    }
-    const calcLMC: () => number = () => {
-        return hole ? Math.abs(size + utol) : Math.abs(size + ltol)
-    }
+    const [out, setOut]: [IOut, React.Dispatch<React.SetStateAction<IOut>>] =
+		useState({
+		    mc: {
+		        mmc: 0,
+		        lmc: 0,
+		    },
+		    diff: {
+		        mdiff: 0,
+		        ldiff: 0,
+		    },
+		    deviation: 0,
+		})
 
-    const [intervalues, setIntervalues] = useState({
-        mmc: calcMMC(),
-        lmc: calcLMC(),
-    })
+    const { size, utol, ltol, hole, real } = state
 
-    const calcMdiff: () => number = () => {
-        return parseFloat(Math.abs(real - intervalues.mmc).toPrecision(4))
-    }
-
-    const calcLdiff: () => number = () => {
-        return parseFloat(Math.abs(real - intervalues.lmc).toPrecision(4))
-    }
-
-    const [diffvalues, setDiffvalues] = useState({
-        mdiff: real - intervalues.mmc,
-        ldiff: real - intervalues.lmc,
-    })
-
-    const calcDeviation: () => number = () => {
-        let res = max
-            ? Math.abs(diffvalues.mdiff + sym)
-            : Math.abs(diffvalues.ldiff + sym)
-        if (res < sym) {
-            res = sym
-        } else if (res > sym + wtol) {
-            res = sym + wtol
+    const calcMC: (size: number, ltol: number, utol: number) => IMC = (
+        size,
+        ltol,
+        utol,
+    ) => {
+        return {
+            mmc: hole ? Math.abs(size + ltol) : Math.abs(size + utol),
+            lmc: hole ? Math.abs(size + utol) : Math.abs(size + ltol),
         }
-        return parseFloat(res.toPrecision(4))
     }
 
-    const [deviation, setDeviation] = useState(calcDeviation())
+    const calcdiff: (real: number, mc: IMC) => IDiff = (real, mc) => {
+        return {
+            mdiff: parseFloat(Math.abs(real - mc.mmc).toPrecision(4)),
+            ldiff: parseFloat(Math.abs(real - mc.lmc).toPrecision(4)),
+        }
+    }
+
+    const calcOut: (state: IState) => IOut = state => {
+        const { max, sym, wtol } = state
+        const mc = calcMC(size, ltol, utol)
+        const diff = calcdiff(real, mc)
+
+        let deviation = max
+            ? Math.abs(diff.mdiff + sym)
+            : Math.abs(diff.ldiff + sym)
+        if (deviation < sym) {
+            deviation = sym
+        } else if (deviation > sym + wtol) {
+            deviation = sym + wtol
+        }
+        deviation = parseFloat(deviation.toPrecision(4))
+        const temp = { mc, diff, deviation }
+        console.debug('Out: ', temp)
+        return temp
+    }
 
     useEffect(() => {
         return () => {
-            console.debug('diffvalues', intervalues, real, calcLdiff())
-            setDiffvalues({
-                mdiff: calcMdiff(),
-                ldiff: calcLdiff(),
-            })
+            setOut(calcOut(state))
         }
-    }, [intervalues, real, wtol, state])
-
-    useEffect(() => {
-        return () => {
-            console.debug('intervalues', state)
-            setIntervalues({
-                mmc: calcMMC(),
-                lmc: calcLMC(),
-            })
-        }
-    }, [state, wtol])
-
-    useEffect(() => {
-        return () => {
-            console.debug('dev', diffvalues, wtol, state)
-            setDeviation(calcDeviation())
-        }
-    }, [diffvalues, wtol, state])
+    }, [state])
 
     return (
         <div className='out grid grid-cols-1 gap-2 section'>
             <div className='mc grid grid-rows-2 gap-2'>
                 <div className='mmc grid grid-cols-2 gap-2'>
                     <div className='label'>MMC</div>
-                    <div className='value'>{intervalues.mmc}</div>
+                    <div className='value'>{out.mc.mmc}</div>
                 </div>
                 <div className='lmc grid grid-cols-2 gap-2'>
                     <div className='label'>LMC</div>
-                    <div className='value'>{intervalues.lmc}</div>
+                    <div className='value'>{out.mc.lmc}</div>
                 </div>
             </div>
             <div className='diff grid grid-rows-2 gap-2'>
                 <div className='mdiff grid grid-cols-2 gap-2'>
                     <div className='label'>difference to MMC</div>
-                    <div className='value'>{diffvalues.mdiff}</div>
+                    <div className='value'>{out.diff.mdiff}</div>
                 </div>
                 <div className='ldiff grid grid-cols-2 gap-2'>
                     <div className='label'>difference to LMC</div>
-                    <div className='value'>{diffvalues.ldiff}</div>
+                    <div className='value'>{out.diff.ldiff}</div>
                 </div>
             </div>
             <div className='deviation grid grid-cols-2 gap-2'>
                 <div className='label'>Allowed Deviation</div>
-                <div className='value final'>{deviation}</div>
+                <div className='value final'>{out.deviation}</div>
             </div>
         </div>
     )

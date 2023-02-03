@@ -11,31 +11,36 @@ export interface IState {
 	real: number
 	hole: boolean
 	max: boolean
+	wtol: number
 }
 
 const initialState: IState = {
     size: 10.0,
     utol: 0.1,
     ltol: -0.1,
+    wtol: 0.2,
     sym: 0.2,
     real: 9.95,
     hole: true,
     max: true,
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const StateContext: any = createContext(initialState)
 
 const Main: FC = () => {
     const [state, setState]: [IState, (state: IState) => void] =
 		useState(initialState)
-    const [wtol, setWtol] = useState(0.2)
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+
     return (
         <div className='main flex w-full h-[100vh] justify-center items-center p-20 my-5'>
             <div className='wrapper grid grid-cols-1 lg:grid-cols-3 gap-5 '>
                 <StateContext.Provider value={{ state, setState }}>
-                    <Tolerance wtol={wtol} setWtol={setWtol} />
+                    <Tolerance />
                     <Mid />
-                    <Out wtol={wtol} />
+                    <Out />
                 </StateContext.Provider>
             </div>
         </div>
