@@ -40,7 +40,7 @@ const Main: FC = () => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
 
     return (
-        <div className='main flex w-full h-[100vh] justify-center items-center p-20 my-20 xl:my-0'>
+        <div className='main flex w-full justify-center items-center lg:p-20 my-10 xl:my-auto'>
             <div className='wrapper grid grid-cols-1 xl:grid-cols-3 gap-8 my-10'>
                 <StateContext.Provider
                     value={{ state, setState, result, setResult }}
