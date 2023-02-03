@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/lmc-mmc-calc/static/css/main.de82f1b1.css",
+    "main.js": "/lmc-mmc-calc/static/js/main.17eea71b.js",
+    "static/js/787.67917293.chunk.js": "/lmc-mmc-calc/static/js/787.67917293.chunk.js",
+    "index.html": "/lmc-mmc-calc/index.html",
+    "main.de82f1b1.css.map": "/lmc-mmc-calc/static/css/main.de82f1b1.css.map",
+    "main.17eea71b.js.map": "/lmc-mmc-calc/static/js/main.17eea71b.js.map",
+    "787.67917293.chunk.js.map": "/lmc-mmc-calc/static/js/787.67917293.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.de82f1b1.css",
+    "static/js/main.17eea71b.js"
+  ]
+}
