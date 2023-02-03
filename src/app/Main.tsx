@@ -1,9 +1,9 @@
 import React, { FC, useState, createContext } from 'react'
 import Tolerance from './modules/Tolerance'
 import Mid from './modules/Mid'
-import Out from './modules/Out'
+import Result from './modules/Result'
 
-import { IOut, IState } from './types'
+import { IResult, IState } from '../types'
 
 const initialState: IState = {
     size: 10.0,
@@ -16,7 +16,7 @@ const initialState: IState = {
     max: true,
 }
 
-const initOut: IOut = {
+const initResult: IResult = {
     mc: {
         mmc: 0,
         lmc: 0,
@@ -29,22 +29,25 @@ const initOut: IOut = {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const StateContext: any = createContext({ initialState, initOut })
+export const StateContext: any = createContext({ initialState, initResult })
 
 const Main: FC = () => {
     const [state, setState]: [IState, (state: IState) => void] =
 		useState(initialState)
-    const [out, setOut]: [IOut, (out: IOut) => void] = useState(initOut)
+    const [result, setResult]: [IResult, (Result: IResult) => void] =
+		useState(initResult)
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
 
     return (
         <div className='main flex w-full h-[100vh] justify-center items-center p-20 my-5'>
             <div className='wrapper grid grid-cols-1 lg:grid-cols-3 gap-5 '>
-                <StateContext.Provider value={{ state, setState, out, setOut }}>
+                <StateContext.Provider
+                    value={{ state, setState, result, setResult }}
+                >
                     <Tolerance />
                     <Mid />
-                    <Out />
+                    <Result />
                 </StateContext.Provider>
             </div>
         </div>

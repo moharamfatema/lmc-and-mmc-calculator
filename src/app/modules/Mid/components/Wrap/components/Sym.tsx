@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { IState } from '../../../../../types'
+import { IState } from '../../../../../../types'
 import { StateContext } from '../../../../../Main'
 
 const Sym: FC = () => {

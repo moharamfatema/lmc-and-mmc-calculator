@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import { StateContext } from '../../../Main'
-import { IState } from '../../../types'
+import { IState } from '../../../../types'
 
 const Real: FC = () => {
     const {

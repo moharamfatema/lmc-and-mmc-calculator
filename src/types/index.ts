@@ -1,4 +1,4 @@
-export interface IOut {
+export interface IResult {
 	mc: IMC
 	diff: IDiff
 	deviation: number
