@@ -3,16 +3,7 @@ import Tolerance from './modules/Tolerance'
 import Mid from './modules/Mid'
 import Out from './modules/Out'
 
-export interface IState {
-	size: number
-	utol: number
-	ltol: number
-	sym: number
-	real: number
-	hole: boolean
-	max: boolean
-	wtol: number
-}
+import { IOut, IState } from './types'
 
 const initialState: IState = {
     size: 10.0,
@@ -25,19 +16,32 @@ const initialState: IState = {
     max: true,
 }
 
+const initOut: IOut = {
+    mc: {
+        mmc: 0,
+        lmc: 0,
+    },
+    diff: {
+        mdiff: 0,
+        ldiff: 0,
+    },
+    deviation: 0,
+}
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const StateContext: any = createContext(initialState)
+export const StateContext: any = createContext({ initialState, initOut })
 
 const Main: FC = () => {
     const [state, setState]: [IState, (state: IState) => void] =
 		useState(initialState)
+    const [out, setOut]: [IOut, (out: IOut) => void] = useState(initOut)
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
 
     return (
         <div className='main flex w-full h-[100vh] justify-center items-center p-20 my-5'>
             <div className='wrapper grid grid-cols-1 lg:grid-cols-3 gap-5 '>
-                <StateContext.Provider value={{ state, setState }}>
+                <StateContext.Provider value={{ state, setState, out, setOut }}>
                     <Tolerance />
                     <Mid />
                     <Out />

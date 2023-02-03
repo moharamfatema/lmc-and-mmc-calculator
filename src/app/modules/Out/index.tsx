@@ -1,36 +1,10 @@
-import React, { FC, useState, useEffect } from 'react'
-import { IState, StateContext } from '../../Main'
-
-interface IOut {
-	mc: IMC
-	diff: IDiff
-	deviation: number
-}
-interface IMC {
-	mmc: number
-	lmc: number
-}
-
-interface IDiff {
-	mdiff: number
-	ldiff: number
-}
+import React, { FC, useEffect } from 'react'
+import { StateContext } from '../../Main'
+import { IMC, IDiff, IOut } from '../../types'
 
 const Out: FC = () => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const { state }: any = React.useContext(StateContext)
-    const [out, setOut]: [IOut, React.Dispatch<React.SetStateAction<IOut>>] =
-		useState({
-		    mc: {
-		        mmc: 0,
-		        lmc: 0,
-		    },
-		    diff: {
-		        mdiff: 0,
-		        ldiff: 0,
-		    },
-		    deviation: 0,
-		})
+    const { state, out, setOut }: any = React.useContext(StateContext)
 
     const { size, utol, ltol, hole, real } = state
 
@@ -52,7 +26,7 @@ const Out: FC = () => {
         }
     }
 
-    const calcOut: (state: IState) => IOut = state => {
+    const calcOut: () => IOut = () => {
         const { max, sym, wtol } = state
         const mc = calcMC(size, ltol, utol)
         const diff = calcdiff(real, mc)
@@ -73,7 +47,8 @@ const Out: FC = () => {
 
     useEffect(() => {
         return () => {
-            setOut(calcOut(state))
+            console.debug('State: ', state)
+            setOut(calcOut())
         }
     }, [state])
 
