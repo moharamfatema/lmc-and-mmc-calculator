@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/lmc-and-mmc-calculator/static/css/main.f8ecb8c7.css",
-    "main.js": "/lmc-and-mmc-calculator/static/js/main.f10e5c19.js",
-    "static/js/787.67917293.chunk.js": "/lmc-and-mmc-calculator/static/js/787.67917293.chunk.js",
-    "index.html": "/lmc-and-mmc-calculator/index.html",
-    "main.f8ecb8c7.css.map": "/lmc-and-mmc-calculator/static/css/main.f8ecb8c7.css.map",
-    "main.f10e5c19.js.map": "/lmc-and-mmc-calculator/static/js/main.f10e5c19.js.map",
-    "787.67917293.chunk.js.map": "/lmc-and-mmc-calculator/static/js/787.67917293.chunk.js.map"
+    "main.css": "/static/css/main.f0c8c7ac.css",
+    "main.js": "/static/js/main.825c8533.js",
+    "static/js/787.67917293.chunk.js": "/static/js/787.67917293.chunk.js",
+    "index.html": "/index.html",
+    "main.f0c8c7ac.css.map": "/static/css/main.f0c8c7ac.css.map",
+    "main.825c8533.js.map": "/static/js/main.825c8533.js.map",
+    "787.67917293.chunk.js.map": "/static/js/787.67917293.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.f8ecb8c7.css",
-    "static/js/main.f10e5c19.js"
+    "static/css/main.f0c8c7ac.css",
+    "static/js/main.825c8533.js"
   ]
 }
