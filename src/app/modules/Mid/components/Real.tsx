@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, useEffect } from 'react'
 import { StateContext } from '../../../Main'
 import { IState } from '../../../../types'
 
@@ -13,17 +13,23 @@ const Real: FC = () => {
 
     const handleRealChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
         const read = parseFloat(e.target.value)
-        let err = false
-        let msg = ''
-        if (read < state.size + state.ltol || read > state.size + state.utol) {
-            err = true
-            msg = 'Measured value is outside of tolerance'
-        } else {
-            err = false
-            msg = ''
-        }
-        setState({ ...state, real: read, err, msg })
+        setState({ ...state, real: read })
     }
+
+    useEffect(() => {
+        if (
+            state.real < state.size + state.ltol ||
+			state.real > state.size + state.utol
+        ) {
+            setState({
+                ...state,
+                err: true,
+                msg: 'Measured value is outside of tolerance',
+            })
+        } else {
+            setState({ ...state, err: false, msg: '' })
+        }
+    }, [state.real, state.size, state.ltol, state.utol])
 
     return (
         <div className='real grid grid-cols-2 gap-2'>
