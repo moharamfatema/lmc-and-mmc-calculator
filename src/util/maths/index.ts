@@ -6,7 +6,9 @@ export const calcMC: (state: IState) => IMC = state => {
         mmc: hole
             ? parseFloat(Math.abs(size + ltol).toPrecision(6))
             : parseFloat(Math.abs(size + utol).toPrecision(6)),
-        lmc: hole ? Math.abs(size + utol) : Math.abs(size + ltol),
+        lmc: hole
+            ? parseFloat(Math.abs(size + utol).toPrecision(6))
+            : parseFloat(Math.abs(size + ltol).toPrecision(6)),
     }
 }
 
