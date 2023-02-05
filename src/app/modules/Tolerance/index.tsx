@@ -11,7 +11,7 @@ const Tolerance: FC = () => {
     }
 
     const handleToleranceWidthChange = () => {
-        setState({ ...state, wtol: parseFloat((utol - ltol).toPrecision(4)) })
+        setState({ ...state, wtol: parseFloat((utol - ltol).toPrecision(6)) })
     }
 
     const handleUtoleranceChange = (e: ChangeEvent<HTMLInputElement>) => {
