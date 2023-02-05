@@ -22,4 +22,6 @@ export interface IState {
 	hole: boolean
 	max: boolean
 	wtol: number
+	err: boolean
+	msg: string
 }

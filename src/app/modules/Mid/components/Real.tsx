@@ -10,6 +10,21 @@ const Real: FC = () => {
 		state: IState
 		setState: React.Dispatch<React.SetStateAction<IState>>
 	} = React.useContext(StateContext)
+
+    const handleRealChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+        const read = parseFloat(e.target.value)
+        let err = false
+        let msg = ''
+        if (read < state.size + state.ltol || read > state.size + state.utol) {
+            err = true
+            msg = 'Measured value is outside of tolerance'
+        } else {
+            err = false
+            msg = ''
+        }
+        setState({ ...state, real: read, err, msg })
+    }
+
     return (
         <div className='real grid grid-cols-2 gap-2'>
             <label htmlFor='real'>
@@ -21,9 +36,7 @@ const Real: FC = () => {
                 name='real'
                 id='real'
                 value={state.real}
-                onChange={e =>
-                    setState({ ...state, real: parseFloat(e.target.value) })
-                }
+                onChange={handleRealChange}
             />
         </div>
     )

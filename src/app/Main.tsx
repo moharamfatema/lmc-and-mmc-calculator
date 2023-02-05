@@ -14,6 +14,8 @@ const initialState: IState = {
     real: 9.95,
     hole: true,
     max: true,
+    err: false,
+    msg: '',
 }
 
 const initResult: IResult = {

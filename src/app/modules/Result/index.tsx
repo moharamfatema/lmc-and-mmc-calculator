@@ -17,7 +17,6 @@ const Result: FC = () => {
 
     useEffect(() => {
         setResult(calcResult(state))
-        console.debug('State: ', state)
     }, [state])
 
     return (
@@ -44,7 +43,11 @@ const Result: FC = () => {
             </div>
             <div className='deviation grid grid-cols-2 gap-2'>
                 <div className='label'>Allowed Deviation</div>
-                <div className='value final'>{result.deviation}</div>
+                {state.err ? (
+                    <div className='value err'>{state.msg}</div>
+                ) : (
+                    <div className='value final'>{result.deviation}</div>
+                )}
             </div>
         </div>
     )

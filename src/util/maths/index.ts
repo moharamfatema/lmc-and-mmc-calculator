@@ -30,6 +30,5 @@ export const calcResult: (state: IState) => IResult = state => {
     }
     deviation = parseFloat(deviation.toPrecision(4))
     const temp = { mc, diff, deviation }
-    console.debug('Result: ', temp)
     return temp
 }

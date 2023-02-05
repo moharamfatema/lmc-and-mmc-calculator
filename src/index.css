@@ -37,6 +37,9 @@ label , .label, div{
 .value.final{
   @apply text-green-600 font-bold text-center;
 }
+.value.err{
+  @apply text-red-600 font-bold text-center;
+}
 
 .section{
   @apply border border-gray-200 p-4 gap-y-5 shadow-md hover:shadow-lg;
