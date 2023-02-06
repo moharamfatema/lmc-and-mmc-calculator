@@ -3,19 +3,15 @@ import { IMC, IDiff, IState, IResult } from '../../types'
 export const calcMC: (state: IState) => IMC = state => {
     const { size, utol, ltol, hole } = state
     return {
-        mmc: hole
-            ? parseFloat(Math.abs(size + ltol).toPrecision(6))
-            : parseFloat(Math.abs(size + utol).toPrecision(6)),
-        lmc: hole
-            ? parseFloat(Math.abs(size + utol).toPrecision(6))
-            : parseFloat(Math.abs(size + ltol).toPrecision(6)),
+        mmc: hole ? round(Math.abs(size + ltol)) : round(Math.abs(size + utol)),
+        lmc: hole ? round(Math.abs(size + utol)) : round(Math.abs(size + ltol)),
     }
 }
 
 export const calcDiff: (real: number, mc: IMC) => IDiff = (real, mc) => {
     return {
-        mdiff: parseFloat(Math.abs(real - mc.mmc).toPrecision(6)),
-        ldiff: parseFloat(Math.abs(real - mc.lmc).toPrecision(6)),
+        mdiff: round(Math.abs(real - mc.mmc)),
+        ldiff: round(Math.abs(real - mc.lmc)),
     }
 }
 
@@ -32,7 +28,11 @@ export const calcResult: (state: IState) => IResult = state => {
     } else if (deviation > sym + wtol) {
         deviation = sym + wtol
     }
-    deviation = parseFloat(deviation.toPrecision(6))
+    deviation = round(deviation)
     const temp = { mc, diff, deviation }
     return temp
+}
+
+export const round = (num: number, precision = 6) => {
+    return parseFloat(num.toPrecision(precision))
 }
